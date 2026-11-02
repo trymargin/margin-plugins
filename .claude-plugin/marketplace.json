@@ -1,0 +1,13 @@
+{
+  "name": "margin",
+  "description": "Margin: cost and value per outcome for your AI workforce, inside your coding agent.",
+  "owner": { "name": "Margin", "url": "https://trymargin.io" },
+  "plugins": [
+    {
+      "name": "margin",
+      "source": "./margin",
+      "description": "Connect your agents to Margin, see where the money goes per job, find the steps worth a face-off, and read the verdicts.",
+      "category": "observability"
+    }
+  ]
+}

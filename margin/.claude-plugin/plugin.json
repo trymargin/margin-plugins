@@ -1,0 +1,35 @@
+{
+  "name": "margin",
+  "displayName": "Margin",
+  "version": "0.1.0",
+  "description": "Cost and value per outcome for your AI agents: connect them to Margin, see spend per job, find the steps worth a face-off, read the verdicts. Reads only; face-offs and pull requests stay in the Margin console.",
+  "author": {
+    "name": "Margin",
+    "url": "https://trymargin.io"
+  },
+  "homepage": "https://trymargin.io/docs",
+  "license": "MIT",
+  "privacyPolicyUrl": "https://trymargin.io/privacy",
+  "termsOfServiceUrl": "https://trymargin.io/terms",
+  "keywords": [
+    "llm-cost",
+    "evals",
+    "observability",
+    "mcp"
+  ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Margin ingest key",
+      "description": "Your project's ingest key (mgk_…), from the Margin console or trymargin.io/start. Stored in your system's secure credential store, never in a settings file.",
+      "sensitive": true,
+      "required": true
+    },
+    "margin_url": {
+      "type": "string",
+      "title": "Margin URL",
+      "description": "Where Margin runs. Leave the default unless you were given another.",
+      "default": "https://trymargin.io"
+    }
+  }
+}

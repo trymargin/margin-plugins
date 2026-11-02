@@ -1,0 +1,34 @@
+---
+description: Use the Margin MCP tools when the user asks what their AI agents cost, where the money goes per job, whether a cheaper model would hold up, what a Margin face-off found, or how to connect a project to Margin.
+alwaysApply: false
+---
+
+# Margin
+
+The `margin` MCP server reads ONE project, the one the `MARGIN_INGEST_KEY` belongs to. It
+only reads. Never ask the user to paste the key into the chat or write it into a repo file.
+
+**Where the money goes.** Call `margin_jobs` (spend per job over 30 days, model, whether an
+eval covers it, concentration), `margin_portfolio_economics` (totals and cost per passed
+outcome) and `margin_blind_spots` (what the numbers cannot see, with the fix). Report only
+what the tools return. Outcomes are per workflow, so never invent a per-job cost per outcome.
+With no customer-supplied value, the figure is cost per outcome; say so.
+
+**What is worth a face-off.** Call `margin_optimize`. Lead with `basis: "measured"` moves,
+never present `prior` or `untested` as a saving, and weigh each move by its job's share of
+spend from `margin_jobs`. Queueing a face-off spends the project's measurement allowance, so
+the user does it in the console at the `queue_in` link. You cannot queue one.
+
+**What the face-offs said.** Call `margin_faceoff_status`: each face-off's status and verdict,
+and the post-merge watch (`holds`, `slipped`, `watching`, `not_merged`) on merged changes.
+Pull requests and reverts open from https://console.trymargin.io/me, because that click is
+the user's approval. Do not reproduce the change by hand to get around it.
+
+**Connecting a project.** OpenRouter users add Margin as a Broadcast destination
+(`https://trymargin.io/api/ingest/otlp/v1/traces`, header `Authorization: Bearer <key>`).
+Direct SDK users: call `margin_instrument_plan`, make its edits, then run
+`python -m margin_meter.doctor --json` (or `npx margin-meter doctor --json`) and report every
+gap it lists. Evals: `margin_eval_setup_plan`. Cursor's own usage cannot be metered from a
+local file: its OTLP export is set in the Cursor team admin dashboard.
+
+An empty answer means nothing was found, never "all clear".

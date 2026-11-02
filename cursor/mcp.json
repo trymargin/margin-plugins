@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "margin": {
+      "url": "https://trymargin.io/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${env:MARGIN_INGEST_KEY}"
+      }
+    }
+  }
+}

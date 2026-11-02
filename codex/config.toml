@@ -1,0 +1,6 @@
+# Margin's MCP server for Codex. Append to ~/.codex/config.toml (or a trusted project's
+# .codex/config.toml). Codex reads the key from MARGIN_INGEST_KEY at runtime and sends it as
+# `Authorization: Bearer …`, so the key never sits in this file.
+[mcp_servers.margin]
+url = "https://trymargin.io/api/mcp"
+bearer_token_env_var = "MARGIN_INGEST_KEY"
