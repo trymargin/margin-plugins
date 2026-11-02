@@ -1,0 +1,12 @@
+# Margin's MCP server for DeepSeek Harness. Append to ~/.dsh/profiles/<profile>/cordis.patch.yml,
+# or pass this file with `dsh <profile> --patch dsh/cordis.patch.yml`. The key is read from
+# MARGIN_INGEST_KEY when the harness starts, so it never sits in this file.
+- insert:
+    - id: mcp-margin
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: margin
+        transport: streamable-http
+        url: https://trymargin.io/api/mcp
+        headers:
+          Authorization: !!js '`Bearer ${process.env.MARGIN_INGEST_KEY}`'

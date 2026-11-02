@@ -21,6 +21,10 @@ Copy `cursor/mcp.json` into `.cursor/mcp.json` and `cursor/margin.mdc` into `.cu
 
 Append `codex/config.toml` to `~/.codex/config.toml`. Codex reads the key from `MARGIN_INGEST_KEY`.
 
+## DeepSeek Harness
+
+Append `dsh/cordis.patch.yml` to your profile's `cordis.patch.yml`, or run `dsh <profile> --patch dsh/cordis.patch.yml`. DSH reads the key from `MARGIN_INGEST_KEY`. In Creator Mode you can also paste the prompts in `dsh/CREATOR_MODE.md`: one connects Margin, one builds a cost panel in the sidebar.
+
 ## What it reads
 
 The MCP server at `https://trymargin.io/api/mcp` returns your project's own cost, outcome and recommendation data, scoped to the key. It never sees your prompts. Docs: [trymargin.io/docs](https://trymargin.io/docs).
