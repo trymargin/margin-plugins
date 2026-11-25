@@ -11,7 +11,7 @@ You need a Margin ingest key (`mgk_…`) from the console or [trymargin.io/start
 /plugin install margin@margin
 ```
 
-Claude Code asks for the key when the plugin is enabled and stores it in your system's credential store, never in a settings file. Four skills come with it: `margin:connect`, `margin:costs`, `margin:check`, `margin:status`.
+Claude Code asks for the key when the plugin is enabled and stores it in your system's credential store, never in a settings file. Five skills come with it: `margin:connect`, `margin:costs`, `margin:check`, `margin:status`, and `margin:verdict`, which asks Margin whether a specific change (a named model, an eval export to replay) holds on your own cases before you make it.
 
 ## Cursor
 

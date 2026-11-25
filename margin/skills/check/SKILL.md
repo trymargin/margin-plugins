@@ -1,6 +1,6 @@
 ---
 name: check
-description: Find which of this project's steps are worth a Margin face-off (a measured test of a cheaper or better setup against the project's own evals) and how to start one. Use when the user asks "can this be cheaper", "should I switch models", "what should I test", or "is there a cheaper model that holds up". Reads only; a face-off is started by the user in the Margin console.
+description: Find which of this project's steps are worth a Margin face-off (a measured test of a cheaper or better setup against the project's own evals) and how to start one. Use when the user asks "can this be cheaper", "should I switch models", "what should I test", or "is there a cheaper model that holds up". Reads with the ingest key; with an agent key a person created, it can also ask Margin to test a move within that key's spend limit.
 ---
 
 # What is worth a face-off
@@ -32,12 +32,22 @@ A face-off needs a finished baseline run and evals. Call `margin_faceoff_status`
 - If `margin_jobs` shows `evals: false` for the job, a face-off there has nothing to grade.
   Say so, and suggest `/margin:connect` step 3 (evals) before any face-off.
 
-## 4. Hand over
+## 4. Test it, or hand over
 
-Queueing a face-off spends the project's measurement allowance, so it is the user's click,
-in the console at the `queue_in` link `margin_optimize` returns (https://console.trymargin.io/me).
-You cannot queue one from here, and you should not try another route. Give the user the link
-and the exact move to pick, by its `level`, `target` and `lever`.
+Queueing a face-off spends the project's measurement allowance, so it needs a credential a person
+granted for exactly that.
 
-Never state a saving that is not `measured`. "A cheaper model might work" is a prior;
-"switching `summarize` to X held 98% of passes at 40% of the cost on 120 cases" is a result.
+**If a `margin-agent` MCP server is connected** (an agent key, `mak_…`, that a person created in
+the console under Settings > Agent keys), call `margin_test_move` with the move's `level`,
+`target` and `lever`. It queues the face-off within the key's spend limit, or returns a named
+refusal. Then read the verdict with `margin_faceoff_status` once the run finishes. The verdict is
+Margin's gate, not yours: report it as given, refusals included, and do not re-judge the numbers.
+A passing change still becomes a pull request only when a person opens it in the console.
+
+**Otherwise**, the ingest key this plugin uses can read but never spend. Give the user the
+`queue_in` link `margin_optimize` returns (https://console.trymargin.io/me) and the exact move to
+pick, by its `level`, `target` and `lever`. Do not look for another route. To let you request
+tests yourself, the user creates an agent key with a spend limit in the console and connects it:
+
+    claude mcp add --transport http margin-agent https://console.trymargin.io/api/mcp/agent \
+      --header 'Authorization: Bearer ${MARGIN_AGENT_KEY}'

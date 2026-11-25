@@ -1,8 +1,8 @@
 {
   "name": "margin",
   "displayName": "Margin",
-  "version": "0.1.0",
-  "description": "Cost and value per outcome for your AI agents: connect them to Margin, see spend per job, find the steps worth a face-off, read the verdicts. Reads only; face-offs and pull requests stay in the Margin console.",
+  "version": "0.2.0",
+  "description": "Cost and value per outcome for your AI agents: connect them to Margin, see spend per job, find the steps worth a face-off, and get Margin's verdict on a model or eval change before you make it. Anything that spends needs an agent key with a spend limit that a person creates.",
   "author": {
     "name": "Margin",
     "url": "https://trymargin.io"
